@@ -40,3 +40,9 @@ Thumbs.db
 .actrc*
 
 __pycache__/
+
+# Python virtual environments and local tooling caches
+.venv/
+venv/
+env/
+.pytest_cache/

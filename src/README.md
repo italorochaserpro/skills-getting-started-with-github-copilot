@@ -12,13 +12,13 @@ Uma aplicação FastAPI super simples que permite que estudantes visualizem e se
 1. Instale as dependências:
 
    ```
-   pip install fastapi uvicorn
+   pip install -r ../requirements.txt
    ```
 
 2. Execute a aplicação:
 
    ```
-   python app.py
+   uvicorn app:app --reload
    ```
 
 3. Abra seu navegador e acesse:
@@ -31,6 +31,54 @@ Uma aplicação FastAPI super simples que permite que estudantes visualizem e se
 | ------ | ----------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Obtém todas as atividades com seus detalhes e contagem atual de participantes |
 | POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Inscreve-se em uma atividade                                                |
+
+## Testes de Backend
+
+Os testes ficam no diretório de nível raiz `tests/` e usam `pytest`.
+
+1. Execute todos os testes:
+
+   ```
+   python -m pytest -v
+   ```
+
+2. Execute novamente para validar isolamento de estado:
+
+   ```
+   python -m pytest -v
+   ```
+
+3. Execute apenas os testes de inscrição:
+
+   ```
+   python -m pytest -v tests/test_signup.py
+   ```
+
+### Convenção AAA (Arrange-Act-Assert)
+
+Todos os testes seguem o padrão AAA para manter legibilidade e consistência:
+
+- Arrange: prepara o cenário e os dados de entrada.
+- Act: executa a ação a ser testada.
+- Assert: valida o resultado esperado.
+
+## Troubleshooting de Ambiente (Debian/Ubuntu)
+
+Se ocorrer erro como `No module named pip`, `No module named pytest` ou falha de criação de venv por ausência de `ensurepip`, instale os pacotes base do Python:
+
+```
+sudo apt update
+sudo apt install -y python3-pip python3-venv
+```
+
+Depois, no diretório raiz do projeto:
+
+```
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pytest -v
+```
 
 ## Modelo de Dados
 
